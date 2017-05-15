@@ -1,6 +1,63 @@
 // Add the reference to the interface
 
 // Create class TodoItem that implements the corresponding interface
+class TodoItem {
+  status = true;
+  updatedAt = new Date();
+
+  constructor (title: string) {
+    this.title = title;
+
+  }
+
+  toggleStatus() {
+    var s = this.status;
+    if(s) {
+      s = false;
+    }else if (!s) {
+      s = true;
+    }
+  }
+}
+
+class TodoList {
+  constructor (public list: Array<string> = []){
+    list = list;
+  }
+
+  addTask(task: any) {
+    this.list.push(task);
+    console.log(`
+      =========== NEW TASK ===========
+      Task ${task.title} inserted in the list
+      `);
+    return this.list.length;
+  }
+
+  // 3. Create a function to list all tasks, it must show in the console de task.
+
+  listAllTasks() {
+    this.list.forEach((elem) => {
+      console.log(elem);
+    });
+  }
+
+  // 4. Create a function to delete a task, you must find the task inside the array and delete it.
+
+  deleteTask(task: any) {
+    var taskDeleted;
+    this.list.forEach((elem, index) => {
+      if(elem.title === task.title) {
+        taskDeleted = this.list.splice(index, 1);
+      }
+    })
+    console.log(`
+      =========== TASK REMOVED ===========
+      Task ${taskDeleted.title} removed from the list
+      `);
+    return this.list.length;
+  }
+}
 
 // Create class TodoList that implements the corresponding interface
 
